@@ -7,6 +7,7 @@ GET     /                           controllers.Application.index()
 
 # City
 GET		/city						controllers.Application.allCities()
+GET		/city/:idc					controllers.Application.getCity(idc: Long)
 POST	/city						controllers.Application.addCity()
 PUT		/city/:idc					controllers.Application.updateCity(idc: Long)
 DELETE	/city/:idc					controllers.Application.deleteCity(idc: Long)
