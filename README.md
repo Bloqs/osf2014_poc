@@ -111,15 +111,18 @@ Cette API permet de gérer les citoyens des villes. Il a été créé dans le bu
 
 ```
 # City
-	GET                /city                                                controllers.Application.allCities()
-	POST        /city                                                controllers.Application.addCity()
-	DELETE        /city/:idc                                        controllers.Application.deleteCity(idc: Long)
-	
-	# Citizen
-	GET                /citizen                                        controllers.Application.allCitizens()
-	GET                /city/:idc/citizen                        controllers.Application.getCitizensOfCity(idc: Long)
-	POST        /city/:idc/citizen                        controllers.Application.newCitizen(idc: Long)
-	DELETE        /city/:idc/citizen/:id                controllers.Application.deleteCitizen(idc: Long, id: Long)
+GET		/city						controllers.Application.allCities()
+GET		/city/:idc					controllers.Application.getCity(idc: Long)
+POST		/city						controllers.Application.addCity()
+PUT		/city/:idc					controllers.Application.updateCity(idc: Long)
+DELETE		/city/:idc					controllers.Application.deleteCity(idc: Long)
+
+# Citizen
+GET		/citizen					controllers.Application.allCitizens()
+GET		/city/:idc/citizen				controllers.Application.getCitizensOfCity(idc: Long)
+POST		/city/:idc/citizen				controllers.Application.addCitizen(idc: Long)
+PUT		/citizen/:id					controllers.Application.updateCitizen(id: Long)
+DELETE		/city/:idc/citizen/:id				controllers.Application.deleteCitizen(idc: Long, id: Long)
 ```
 
 6. Tests avec client REST
