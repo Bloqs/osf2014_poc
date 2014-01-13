@@ -155,7 +155,7 @@ Les résultats obtenus sont les suivants :
 
 * Premier test avec 50 Threads
 
-	* Table city 
+	Table city 
 		
 | Service       | Serveur        | Cluster       | Serveur + Cache | Cluster + Cache
 |---------------|---------------:|--------------:|----------------:|-----------------:
@@ -165,7 +165,7 @@ Les résultats obtenus sont les suivants :
 | DELETE        | 14.2 ms        | 12.5 ms       | 13 ms           | 12 ms
 | **SubTotal**  | **14.625 ms**  | **12.375 ms** | **11.275 ms**   | **10.55 ms**
 
-	* Table citizen 
+	Table citizen 
 
 | Service       | Serveur        | Cluster        | Serveur + Cache | Cluster + Cache
 |---------------|---------------:|---------------:|----------------:|-----------------:
@@ -178,7 +178,7 @@ Les résultats obtenus sont les suivants :
 
 * Deuxième test avec 100 Threads
 
-	* Table city 
+	Table city 
 		
 | Service       | Serveur        | Cluster       | Serveur + Cache | Cluster + Cache
 |---------------|---------------:|--------------:|----------------:|-----------------:
@@ -188,7 +188,7 @@ Les résultats obtenus sont les suivants :
 | DELETE        | 38 ms          | 20 ms         | 21 ms           | 13.5 ms
 | **SubTotal**  | **33.85 ms**   | **22.575 ms** | **19.075 ms**   | **15.225 ms**
 
-	* Table citizien 
+	Table citizien 
 
 | Service       | Serveur        | Cluster        | Serveur + Cache | Cluster + Cache
 |---------------|---------------:|---------------:|----------------:|-----------------:
@@ -201,7 +201,7 @@ Les résultats obtenus sont les suivants :
 
 * Troisième et dernier test avec 200 Threads
 
-	* Table city 
+	Table city 
 		
 | Service       | Serveur        | Cluster       | Serveur + Cache | Cluster + Cache
 |---------------|---------------:|--------------:|----------------:|-----------------:
@@ -211,7 +211,7 @@ Les résultats obtenus sont les suivants :
 | DELETE        | 72 ms          | 53.1 ms       | 38.5 ms         | 36.3 ms
 | **SubTotal**  | **75.55 ms**   | **54.6 ms**   | **43.275 ms**   | **33.05 ms**
 
-	* Table citizien 
+	Table citizien 
 
 | Service       | Serveur        | Cluster        | Serveur + Cache | Cluster + Cache
 |---------------|---------------:|---------------:|----------------:|-----------------:
