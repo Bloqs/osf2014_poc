@@ -222,7 +222,7 @@ Les résultats obtenus sont les suivants :
 | **SubTotal**  | **79.4 ms**    | **57.05 ms**   | **42.75 ms**    | **31.075 ms**
 | **TOTAL**     | **77.475 ms**  | **55.825 ms**  | **143.0125 ms** | **32.0625 ms**
 
-![Comparaison des performances](http://subefotos.com/ver/?ae870179d15d41dda5bc2e9ac62c5002o.png)
+<img src="http://s23.postimg.org/ialjnm0tn/Capture_d_cran_2014_01_13_09_51_51.png"/>
 
 
 On peux constater qu'à chaque fois, le temps utilisé pour une requête est plus court lorsqu'on modifie la configuration de notre application (déployement en cluster et avec cache) que quand elle tourne sur un serveur unique et sans cache.  
