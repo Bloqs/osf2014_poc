@@ -128,4 +128,101 @@ DELETE	/city/:idc/citizen/:id			controllers.Application.deleteCitizen(idc: Long,
 6. Tests avec client REST
 -----------
 
+Les tests ont été effectués avec Jmeter en utilisant 4 configurations différentes :
 
+   Configuration  	  | Description 				
+|-------------------------|----------------------------------------------------
+| Serveur Play	          | 1 seul serveur Play sans cache
+| Cluster Play            | 2 serveurs avec un Load Balancer sans cache
+| Serveur Play avec Cache | 1 seul serveur Play en utilisant le cache
+| Cluster Play avec Cache | 2 serveurs avec un Load Balancer et un cache
+
+Pour chaque configuration, on teste toutes les requêtes HTTP possibles :
+
+* Table City
+	* Obtain city   => GET 		on /city 
+	* Create city  	=> POST 	on /city
+	* Delete city 	=> DELETE 	on /city/:idc                       
+	* Modify city 	=> PUT 		on /city/:idc
+	
+* Table Citizen
+	* Obtain Citizen   	=> GET 		on/citizen                                        
+	* Create Citizen  	=> POST 	on /city/:idc/citizen                                       
+	* Delete Citizen 	=> DELETE 	on /city/:idc/citizen/:id                     
+	* Modify Citizen 	=> PUT 		on /city/:idc/citizen/:id 
+	
+Les résultats obtenus sont les suivants : 
+
+* Premier test avec 50 Threads
+
+	* Table city 
+		
+| Service       | Serveur        | Cluster       | Serveur + Cache | Cluster + Cache
+|---------------|---------------:|--------------:|----------------:|-----------------:
+| GET           | 15.3 ms        | 12 ms         | 9.3 ms          | 8.4 ms 
+| POST          | 12 ms          | 11 ms         | 10.3 ms         | 11.4 ms
+| PUT           | 17 ms          | 14 ms         | 12.5 ms         | 10.4 ms
+| DELETE        | 14.2 ms        | 12.5 ms       | 13 ms           | 12 ms
+| **SubTotal**  | **14.625 ms**  | **12.375 ms** | **11.275 ms**   | **10.55 ms**
+
+	* Table citizen 
+
+| Service       | Serveur        | Cluster        | Serveur + Cache | Cluster + Cache
+|---------------|---------------:|---------------:|----------------:|-----------------:
+| GET           | 16.5 ms        | 10 ms          | 10.3 ms         | 9.2 ms 
+| POST          | 15 ms          | 11.4 ms        | 9.7 ms          | 12 ms
+| PUT           | 15.6 ms        | 13.2 ms        | 11.3 ms         | 11.2 ms
+| DELETE        | 12 ms          | 11.2 ms        | 14 ms           | 8 ms
+| **SubTotal**  | **14.775 ms**  | **11.45 ms**   | **11.325 ms**   | **10 ms**
+| **TOTAL**     | **14.75 ms**   | **11.9125 ms** | **11.3 ms**     | **10.275 ms**
+
+* Deuxième test avec 100 Threads
+
+	* Table city 
+		
+| Service       | Serveur        | Cluster       | Serveur + Cache | Cluster + Cache
+|---------------|---------------:|--------------:|----------------:|-----------------:
+| GET           | 31.4 ms        | 23 ms         | 17 ms           | 15.2 ms 
+| POST          | 34 ms          | 26.3 ms       | 20.1 ms         | 12.2 ms
+| PUT           | 32 ms          | 21 ms         | 18.2 ms         | 20 ms
+| DELETE        | 38 ms          | 20 ms         | 21 ms           | 13.5 ms
+| **SubTotal**  | **33.85 ms**   | **22.575 ms** | **19.075 ms**   | **15.225 ms**
+
+	* Table citizien 
+
+| Service       | Serveur        | Cluster        | Serveur + Cache | Cluster + Cache
+|---------------|---------------:|---------------:|----------------:|-----------------:
+| GET           | 41.1 ms        | 26.4 ms        | 19.4 ms         | 14.5 ms 
+| POST          | 38.3 ms        | 22.4 ms        | 18 ms           | 16.3 ms
+| PUT           | 37.1 ms        | 26.1 ms        | 20.2 ms         | 17.2ms
+| DELETE        | 33.4 ms        | 25 ms          | 16 ms           |15.2 ms
+| **SubTotal**  | **37.475 ms**  | **24.975 ms**  | **18.4 ms**     | **15.8 ms**
+| **TOTAL**     | **35.6625 ms** | **23.775 ms**  | **18.7375 ms**  | **15.5125 ms**
+
+* Troisième et dernier test avec 200 Threads
+
+	* Table city 
+		
+| Service       | Serveur        | Cluster       | Serveur + Cache | Cluster + Cache
+|---------------|---------------:|--------------:|----------------:|-----------------:
+| GET           | 73.3 ms        | 56.3 ms       | 42.1 ms         | 24.2 ms 
+| POST          | 76.4 ms        | 60.5 ms       | 45.2 ms         | 37.4 ms
+| PUT           | 80.5 ms        | 48.5 ms       | 47.3 ms         | 34.3 ms
+| DELETE        | 72 ms          | 53.1 ms       | 38.5 ms         | 36.3 ms
+| **SubTotal**  | **75.55 ms**   | **54.6 ms**   | **43.275 ms**   | **33.05 ms**
+
+	* Table citizien 
+
+| Service       | Serveur        | Cluster        | Serveur + Cache | Cluster + Cache
+|---------------|---------------:|---------------:|----------------:|-----------------:
+| GET           | 78.4 ms        | 53.2 ms        | 44.2 ms         | 20.1 ms 
+| POST          | 86.4 ms        | 58.4 ms        | 45.3 ms         | 33.6 ms
+| PUT           | 73.5 ms        | 65.4 ms        | 39.4 ms         | 38.5 ms
+| DELETE        | 79.3 ms        | 51.2 ms        | 42.1 ms         |32.1 ms
+| **SubTotal**  | **79.4 ms**    | **57.05 ms**   | **42.75 ms**    | **31.075 ms**
+| **TOTAL**     | **77.475 ms**  | **55.825 ms**  | **143.0125 ms** | **32.0625 ms**
+
+![Comparaison des performances](http://subefotos.com/ver/?ae870179d15d41dda5bc2e9ac62c5002o.png)
+
+
+On peux constater qu'à chaque fois, le temps utilisé pour une requête est plus court lorsqu'on modifie la configuration de notre application (déployement en cluster et avec cache) que quand elle tourne sur un serveur unique et sans cache.  
