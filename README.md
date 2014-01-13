@@ -118,11 +118,11 @@ PUT		/city/:idc					controllers.Application.updateCity(idc: Long)
 DELETE	/city/:idc					controllers.Application.deleteCity(idc: Long)
 
 # Citizen
-GET		/citizen					controllers.Application.allCitizens()
+GET		/citizen						controllers.Application.allCitizens()
 GET		/city/:idc/citizen				controllers.Application.getCitizensOfCity(idc: Long)
 POST	/city/:idc/citizen				controllers.Application.addCitizen(idc: Long)
 PUT		/citizen/:id					controllers.Application.updateCitizen(id: Long)
-DELETE	/city/:idc/citizen/:id				controllers.Application.deleteCitizen(idc: Long, id: Long)
+DELETE	/city/:idc/citizen/:id			controllers.Application.deleteCitizen(idc: Long, id: Long)
 ```
 
 6. Tests avec client REST
